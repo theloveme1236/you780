@@ -295,7 +295,62 @@ time.sleep(5)
                     driver.quit()
                     sys.exit()
                 '''
+def instagram_follow_erro():
+    current_url = driver.current_url
+    challenge_node_id  = current_url.split('instagram.com/')[-1].split('/?challenge_node_id')[0]
+    if challenge_node_id == 'challenge':
+        print('challenge')
+        print(current_url)
+        print('challenge_node_id')
+        #driver.find_element(By.XPATH, "//*[text()='Change Password']")
+        #sys.exit()
+        try:
+            driver.switch_to.window(driver.window_handles[1])
+            driver.close()
+        except:
+            pass
+        try:
+            driver.switch_to.window(driver.window_handles[0])
+            driver.close()
+        except:
+            pass
+        input('stop_________________challenge_node_id')
+    challenge_nw  = current_url.split('instagram.com/')[-1].split('/?next')[0]
+    if challenge_nw == 'challenge':
+        print('challenge_challenge_challenge_challenge_challenge_challenge_challenge_challenge_challenge')
+        driver.find_element(By.XPATH, "//*[text()='Dismiss']").click()
+        print('challenge_challenge_challenge_challenge_challenge_challenge_challenge_challenge_challenge')
+        
+    if current_url == 'https://www.instagram.com/?__coig_restricted=1' or  current_url == 'https://www.instagram.com/?__coig_restricted=1/':
+        print('coig_restricte___')
+        print('coig_restricte___')
+        print('coig_restricte___')
+        print(current_url)
+        print('coig_restricte___')
+        print('coig_restricte___')
+        print('coig_restricte___')
+        driver.delete_all_cookies()
+        like4like_login_instgram()
+        like3like_login_first()
+        print('coig_restricte')
 
+    if current_url == 'https://www.like4like.org/user/bonus-page.php' or  current_url == 'https://www.like4like.org/user/bonus-page.php/':
+        print('erro_https://www.like4like.org/user/bonus-page.php')
+        print('erro_https://www.like4like.org/user/bonus-page.php')
+        print('erro_https://www.like4like.org/user/bonus-page.php')
+        print('erro_https://www.like4like.org/user/bonus-page.php')
+        ##result > div > a:nth-child(8)
+        ##result > div > a:nth-child(6)
+        
+        for a in range(8):
+            rand = random.randrange(2,8)
+            print(a)
+            try:
+                driver.find_element(By.CSS_SELECTOR, "#result > div > a:nth-child({})".format(rand)).click()
+                break
+            except:
+                print('errobonus-page.php')
+        #input('erro_https://www.like4like.org/user/bonus-page.php')
 def like4like_login_instgram():
     global stop_def_instagram_follow
     global stop_def_instagram_like
@@ -303,96 +358,43 @@ def like4like_login_instgram():
         cookies_totel_1 = cookies_totel.split('_cookies')[0]
         print(cookies_totel_1)
         if cookies_totel_1=='instagram':
-            driver.get("https://www.instagram.com")
             try:
-                driver.find_element(By.XPATH,'//*[text()="Allow all cookies"]').click()
-            except:
-                pass
-            time.sleep(10)
-            try:
-                email_2 = cookies_totel.split('instagram_cookies_')[-1].split('_pas_')[0]
-                password_2 = cookies_totel.split('_pas_')[-1].split('_n')[0]
-                print(email_2)
-                driver.find_element(By.NAME, 'username').send_keys(email_2)
-                time.sleep(1)
-                driver.find_element(By.NAME, 'password').send_keys(password_2)
-                time.sleep(1)
-                driver.find_element(By.NAME, 'password').send_keys(Keys.RETURN)
-            except Exception as s:
-                print(s)
-            time.sleep(5)
-            driver.get("https://www.instagram.com/direct/inbox/")
-            time.sleep(5)
-            login_instgram_true_login = driver.current_url.split('accounts/')[-1].split('/?')[0]
-            login_instgram = driver.current_url
-            if login_instgram== 'https://www.instagram.com/direct/inbox/' or login_instgram== 'https://www.instagram.com/direct/inbox':
-                print('login_username_password')
-            else:
-                print('erro_username_password')
-                print(current_url)
-                print('erro_username_password')
-                
-                    
-            '''
-            with open('{}'.format(cookies_totel), 'r') as file:
-                cookies = file.readlines()
-            for cookie in cookies:
-                fields = cookie.strip().split('\t')
-                if len(fields) >= 7:
-                    cookie_dict = {'name': fields[5],'value': fields[6],'domain': fields[0],'path': fields[2],'expires': int(fields[4]),'secure': bool(fields[3])}
-                    driver.add_cookie(cookie_dict)
-                
-            driver.get("https://www.instagram.com/direct/inbox/")
-        
-            time.sleep(10)
-            login_instgram = driver.current_url
-            login_instgram_true = driver.current_url.split('accounts/')[-1].split('/?')[0]
-            if login_instgram=='https://www.instagram.com/direct/inbox/' or login_instgram=='https://www.instagram.com/direct/inbox':
-                print('login_true_insgram')
-            elif login_instgram_true =='login':
-                email_2 = cookies_totel.split('instagram_cookies_')[-1].split('_pas_')[0]
-                password_2 = cookies_totel.split('_pas_')[-1].split('_n')[0]
-                time.sleep(1)
-                driver.find_element(By.NAME, 'username').send_keys(email_2)
-                time.sleep(1)
-                driver.find_element(By.NAME, 'password').send_keys(password_2)
-                time.sleep(1)
-                driver.find_element(By.NAME, 'password').send_keys(Keys.RETURN)
+                driver.get("https://www.instagram.com")
+                try:
+                    driver.find_element(By.XPATH,'//*[text()="Allow all cookies"]').click()
+                except:
+                    pass
+                time.sleep(10)
+                try:
+                    email_2 = cookies_totel.split('instagram_cookies_')[-1].split('_pas_')[0]
+                    password_2 = cookies_totel.split('_pas_')[-1].split('_n')[0]
+                    print(email_2)
+                    driver.find_element(By.NAME, 'username').send_keys(email_2)
+                    time.sleep(1)
+                    driver.find_element(By.NAME, 'password').send_keys(password_2)
+                    time.sleep(1)
+                    driver.find_element(By.NAME, 'password').send_keys(Keys.RETURN)
+                except Exception as s:
+                    print(s)
                 time.sleep(5)
                 driver.get("https://www.instagram.com/direct/inbox/")
                 time.sleep(5)
                 login_instgram_true_login = driver.current_url.split('accounts/')[-1].split('/?')[0]
                 login_instgram = driver.current_url
-                if login_instgram=='https://www.instagram.com/direct/inbox/' or login_instgram=='https://www.instagram.com/direct/inbox':
+                if login_instgram== 'https://www.instagram.com/direct/inbox/' or login_instgram== 'https://www.instagram.com/direct/inbox':
                     print('login_username_password')
+                else:
+                    print('erro_username_password')
                     
-                    cookies = driver.get_cookies()
-                    with open('{}'.format(cookies_totel), 'w', encoding='utf-8') as file:
-                        for cookie in cookies:
-                            # Check if 'expiry' exists in the cookie dictionary
-                            expiry = cookie.get('expiry', 0)
-
-                            file.write(
-                                f"{cookie['domain']}\t"  # Domain
-                                f"{str(cookie['domain'].startswith('.'))}\t"  # Domain Flag
-                                f"{cookie['path']}\t"  # Path
-                                f"{str(cookie['secure'])}\t"  # Secure Flag
-                                f"{expiry}\t"  # Expiry
-                                f"{cookie['name']}\t"  # Cookie Name
-                                f"{cookie['value']}\n"  # Cookie Value
-                            )
-                        
-                           
-                elif login_instgram_true_login=='suspended':
-                    print('suspended_instagram')
-                    stop_def_instagram_follow = 'stop'
-                    stop_def_instagram_like  = 'stop'
-                    sys.exit()
-                '''
-                    
+                    print('erro_username_password')
+                    instagram_follow_erro()
+            except Exception as sss:
+                print(sss)
+                instagram_follow_erro()
+                
         else:
-            pass
-            #print('errroo')
+            
+            print('no find instagram.txt')
             #print(driver.current_url)
             #sys.exit()
                 
@@ -471,7 +473,7 @@ def failed_success_minutes():
             input('You have failed our')
             seconds_to_wait = minutes_to_add * 60
             # الانتظار لعدد الثواني المحدد
-            time.sleep(seconds_to_wait)
+            time.sleep(int(seconds_to_wait))
             '''
             email_to_find = email
             user_data = collection.find_one({"email": email_to_find})
@@ -881,62 +883,7 @@ def pinterest_save():
             failed_success_minutes()
             check_driver_open()
             no_Window_driver()
-def instagram_follow_erro():
-    current_url = driver.current_url
-    challenge_node_id  = current_url.split('instagram.com/')[-1].split('/?challenge_node_id')[0]
-    if challenge_node_id == 'challenge':
-        print('challenge')
-        print(current_url)
-        print('challenge_node_id')
-        #driver.find_element(By.XPATH, "//*[text()='Change Password']")
-        #sys.exit()
-        try:
-            driver.switch_to.window(driver.window_handles[1])
-            driver.close()
-        except:
-            pass
-        try:
-            driver.switch_to.window(driver.window_handles[0])
-            driver.close()
-        except:
-            pass
-        input('stop_________________challenge_node_id')
-    challenge_nw  = current_url.split('instagram.com/')[-1].split('/?next')[0]
-    if challenge_nw == 'challenge':
-        print('challenge_challenge_challenge_challenge_challenge_challenge_challenge_challenge_challenge')
-        driver.find_element(By.XPATH, "//*[text()='Dismiss']").click()
-        print('challenge_challenge_challenge_challenge_challenge_challenge_challenge_challenge_challenge')
-        
-    if current_url == 'https://www.instagram.com/?__coig_restricted=1' or  current_url == 'https://www.instagram.com/?__coig_restricted=1/':
-        print('coig_restricte___')
-        print('coig_restricte___')
-        print('coig_restricte___')
-        print(current_url)
-        print('coig_restricte___')
-        print('coig_restricte___')
-        print('coig_restricte___')
-        driver.delete_all_cookies()
-        like4like_login_instgram()
-        like3like_login_first()
-        print('coig_restricte')
 
-    if current_url == 'https://www.like4like.org/user/bonus-page.php' or  current_url == 'https://www.like4like.org/user/bonus-page.php/':
-        print('erro_https://www.like4like.org/user/bonus-page.php')
-        print('erro_https://www.like4like.org/user/bonus-page.php')
-        print('erro_https://www.like4like.org/user/bonus-page.php')
-        print('erro_https://www.like4like.org/user/bonus-page.php')
-        ##result > div > a:nth-child(8)
-        ##result > div > a:nth-child(6)
-        
-        for a in range(8):
-            rand = random.randrange(2,8)
-            print(a)
-            try:
-                driver.find_element(By.CSS_SELECTOR, "#result > div > a:nth-child({})".format(rand)).click()
-                break
-            except:
-                print('errobonus-page.php')
-        #input('erro_https://www.like4like.org/user/bonus-page.php')
 def instagram_follow():
     global driver
     my_list_like = []
@@ -955,10 +902,11 @@ def instagram_follow():
     con_follows_stop = 0
     for s in range(15):
         try:
-
+            '''
             if stop_def_instagram_follow == 'stop':
                 print('stop_def_instagram_follow')
                 break
+            '''
             #driver.maximize_window()
             driver.implicitly_wait(15)
             element_control_click = driver.find_element(By.CSS_SELECTOR,"a[class^='cursor earn_pages_button profile_view_img']")
@@ -1045,9 +993,11 @@ def instagram_like():
     driver.set_window_size(1920, page_height)
     for s in range(1):
         try:
+            '''
             if stop_def_instagram_like == 'stop':
                 print('stop_def_instagram_like ')
                 break
+            '''
             #driver.maximize_window()
             driver.implicitly_wait(15)
             driver.find_element(By.CSS_SELECTOR, "a[class^='cursor earn_pages_button profile_view_img']").click()
