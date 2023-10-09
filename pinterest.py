@@ -228,6 +228,9 @@ def like3like_login_first():
                     '''
                 else:
                     print('false_cookies')
+                    print('false_cookies')
+                    driver.close()
+                    sys.exit()
                     '''
                     email_to_find = email
                     user_data = collection.find_one({"email": email_to_find})
@@ -238,7 +241,7 @@ def like3like_login_first():
                         {"$set": {"login_like": new_login_like}}
                     )
                     driver.quit()
-                    sys.exit()
+                    
                     '''
 
 '''
@@ -470,10 +473,8 @@ def failed_success_minutes():
             print('You have failed our')
             print('You have failed our')
             print('You have failed our')
-            input('You have failed our')
-            seconds_to_wait = minutes_to_add * 60
-            # الانتظار لعدد الثواني المحدد
-            time.sleep(int(seconds_to_wait))
+            driver.close()
+            time.sleep(int(minutes_to_add) * 60)
             '''
             email_to_find = email
             user_data = collection.find_one({"email": email_to_find})
@@ -961,12 +962,14 @@ def instagram_follow():
                         page_height = driver.execute_script("return document.body.scrollHeight;")
                         driver.set_window_size(1920, page_height)
                     except:
-                        text_instgeram = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div/div/span").text
-                        print(text_instgeram)
                         my_list_like.append(onclick_value)
                         with open('unfollowing.txt', 'a', encoding='utf-8') as result:
                             result.write("\n")
                             result.write(onclick_value)
+                        driver.save_screenshot('un_{}.png'.format(int(s)))
+                        text_instgeram = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div/div/span").text
+                        print(text_instgeram)
+
                         time.sleep(5)
                         driver.close()
                         driver.switch_to.window(driver.window_handles[0])
