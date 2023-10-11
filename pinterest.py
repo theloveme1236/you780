@@ -101,6 +101,8 @@ def like3like_login():
                 print(email)
                 password = '1234thelove'
                 driver.get("https://www.like4like.org/login/")
+                page_height = driver.execute_script("return document.body.scrollHeight;")
+                driver.set_window_size(1920, page_height)
                 #time.sleep(2)
                 driver.find_element(By.ID, 'username').send_keys(email)
                 #time.sleep(2)
@@ -177,9 +179,11 @@ def like3like_login_first():
             print(email)
             password = '1234thelove'
             driver.get("https://www.like4like.org/login/")
-            #time.sleep(2)
+            page_height = driver.execute_script("return document.body.scrollHeight;")
+            driver.set_window_size(1920, page_height)
+            time.sleep(2)
             driver.find_element(By.ID, 'username').send_keys(email)
-            #time.sleep(2)
+            time.sleep(2)
             driver.find_element(By.ID, 'password').send_keys(password)
             time.sleep(2)
             driver.find_element(By.ID, 'password').send_keys(Keys.ENTER)
