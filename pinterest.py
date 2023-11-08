@@ -11,7 +11,6 @@ os.system('pip install pymongo')
 os.system('pip install webdriver_manager')
 
 
-
 import subprocess
 import time
 from selenium.webdriver.common.keys import Keys
@@ -189,7 +188,7 @@ def like3like_login_first():
             driver.find_element(By.ID, 'password').send_keys(Keys.ENTER)
             time.sleep(1)
             driver.get("https://www.like4like.org/user/")
-            time.sleep(20)
+            time.sleep(5)
             current_url = driver.current_url
             if current_url=='https://www.like4like.org/user/':
                 print(current_url)
@@ -404,7 +403,22 @@ def like4like_login_instgram():
             print('no find instagram.txt')
             #print(driver.current_url)
             #sys.exit()
-                
+def like4like_login_tiktok():
+    for cookies_totel in os.listdir(os.getcwd()):    
+        cookies_totel_1 = cookies_totel.split('_tiktok')[0]
+        print(cookies_totel_1)
+        if cookies_totel_1=='like':
+            driver.get("https://www.tiktok.com/explore")
+            cookies = pickle.load(open('{}'.format(cookies_totel), "rb"))
+            for cookie in cookies:
+                try:
+                    driver.add_cookie(cookie)
+                except Exception as ss:
+                    print(ss)
+                    continue
+
+            driver.get("https://www.tiktok.com/explore")
+            time.sleep(10)
 def limeit_all_ike4like():
     global driver
     if like_erro_stop_time == 'stop':#Subscribe_erro_stop_time == 'stop' and 
@@ -864,6 +878,49 @@ def pinterest():
             failed_success_minutes()
             check_driver_open()
             no_Window_driver()
+def tiktok_follow():
+    global driver
+    my_list_like = []
+    try:
+        with open('unfollowing.txt', 'r') as file:
+            flowws = file.readlines()
+        for addfw in flowws:    
+            my_list_like.append(addfw.strip())
+    except:
+        print('add_list')
+    driver.get("https://www.like4like.org/user/earn-tiktok-follow.php")
+    time.sleep(5)
+    page_height = driver.execute_script("return document.body.scrollHeight;")
+    driver.set_window_size(1920, page_height)
+    for s in range(2):
+        try:
+            driver.implicitly_wait(15)
+            element_control_click = driver.find_element(By.CSS_SELECTOR,"a[class^='cursor earn_pages_button profile_view_img']")
+            onclick_value = element_control_click.get_attribute("onclick").split('tiktok.com/')[-1].split("'")[0]
+            if onclick_value in my_list_like:
+                print("skip")
+                driver.find_element(By.CSS_SELECTOR, "a.cursor").click()
+            else:
+                driver.find_element(By.CSS_SELECTOR, "a[class^='cursor earn_pages_button profile_view_img']").click()
+                driver.switch_to.window(driver.window_handles[1])
+                time.sleep(2)
+                driver.find_element(By.XPATH, "//button[@data-e2e='follow-button']").click()
+                time.sleep(2)
+                driver.refresh()
+                time.sleep(2)
+                driver.close()
+                driver.switch_to.window(driver.window_handles[0])
+                time.sleep(2)
+                driver.find_element(By.CSS_SELECTOR, '[alt="Click On The Button To Confirm Interaction!"]').click()
+                time.sleep(2)
+        except Exception as a:
+            print(a)
+            failed_success_minutes()
+            check_driver_open()
+            driver.get("https://www.like4like.org/user/earn-tiktok-follow.php")
+            time.sleep(5)
+            page_height = driver.execute_script("return document.body.scrollHeight;")
+            driver.set_window_size(1920, page_height)
 def pinterest_save():
     global driver
     driver.get("https://www.like4like.org/earn-credits.php?feature=pinterestrep")
@@ -1042,6 +1099,7 @@ def instagram_like():
             time.sleep(5)
             page_height = driver.execute_script("return document.body.scrollHeight;")
             driver.set_window_size(1920, page_height)
+
 open_browser()
 like4like_login_instgram()
 like3like_login_first()
@@ -1076,4 +1134,3 @@ for  a in range(9999999999999):
         print(ssss)
         print('errrooo')
         continue
-    
