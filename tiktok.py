@@ -19,6 +19,7 @@ from selenium.webdriver.chrome.options import Options
 from datetime import datetime, timedelta
 import pickle
 import requests
+from github import Github
 def open_browser():
     global driver
     options = Options()
