@@ -6,6 +6,8 @@ os.system('sudo apt install python3-pip -y')
 os.system('sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb')
 os.system('sudo apt install ./google-chrome-stable_current_amd64.deb -y')
 os.system('pip install selenium')
+os.system('pip install PyGithub')
+
 import subprocess
 import sys
 import time
