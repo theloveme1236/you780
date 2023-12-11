@@ -34,6 +34,7 @@ def open_browser():
     driver.maximize_window()
 con = 0
 errrrroo = 0
+No_tasks = 0
 def like3like_login_first():
     for cookies_totel in os.listdir(os.getcwd()):
         cookies_totel_1 = cookies_totel.split('_cookies')[0]
@@ -85,8 +86,7 @@ def like3like_login_first():
                     print('false_login')
                     break
 
-
-
+    
 def check_driver_open():
     try:
         all_windows = driver.window_handles
@@ -132,9 +132,18 @@ def failed_success_minutes():
             print(failed_success)
             print('You have failed our')
             print('You have failed our')
-            print('You have failed our')          
+            print('You have failed our')
+            sys.exit()
         if erro_minutes == 'No tasks are currently available, please try again later...':
             print('No tasks are currently available')
+            No_tasks += 1
+            if No_tasks == 5:
+                print('No tasks are currently available')
+                print('No tasks are currently available')
+                print('No tasks are currently available')
+                print('No tasks are currently available')
+                sys.exit()
+            
     except NoSuchWindowException:
         print('failed_success_minutes')	
     except NoSuchElementException:
@@ -142,6 +151,14 @@ def failed_success_minutes():
     except Exception as ssssd2:
         print('failed_success_minutes:  ',ssssd2)
 def follow_tiktok():
+    for cookies_totel in os.listdir(os.getcwd()):
+        cookies_totel_1 = cookies_totel.split('_apk')[0]
+        if cookies_totel_1=='tiktok':
+            apk_open = cookies_totel.split('apk_')[-1].split('_id')[0]
+            apk_id =cookies_totel.split('id_')[-1].split('_data')[0]
+            
+            
+    
     my_list_like = []
     try:
         with open('unfollowing_tiktok.txt', 'r') as file:
@@ -172,7 +189,7 @@ def follow_tiktok():
                     
                     driver.find_element(By.CSS_SELECTOR, "a[class^='cursor earn_pages_button profile_view_img']").click()
                     my_list_like.append(onclick_value)
-                    with open('unfollowing.txt', 'a', encoding='utf-8') as result:
+                    with open('unfollowing_tiktok.txt', 'a', encoding='utf-8') as result:
                         result.write("\n")
                         result.write(onclick_value)
                     driver.switch_to.window(driver.window_handles[1])
@@ -180,7 +197,8 @@ def follow_tiktok():
                     username = onclick_value.split('@')[-1]
                     database_url = 'https://ahmed-3cacf-default-rtdb.firebaseio.com/'
                     users_endpoint = fisrt_start
-                    new_user_data = {"name": "mohamed", "email": username}
+                    new_user_data = {"name": "mohamed", "email": username ,"apk" : apk_open ,"id": apk_id}
+                    print(new_user_data)
                     response_put = requests.put(f'{database_url}/{users_endpoint}', json=new_user_data)
                     while True:
                         try:
@@ -210,10 +228,10 @@ def follow_tiktok():
                                     email_mail = cookies_totel.split('like_cookies_')[-1].split('.pkl')[0]
                                     
                                     totel_mail = email_mail.split('_')[-1]
-                                    totel_mail_new = int(700)+int(totel_mail) 
+                                    totel_mail_new =totel_mail 
                                     print(totel_mail_new)
                                     # Set your GitHub access token
-                                    access_token = "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"
+                                    access_token = "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"
 
                                     # Set the repository name
                                     repository_name = "you{}".format(totel_mail_new)
